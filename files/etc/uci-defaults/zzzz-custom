@@ -24,17 +24,18 @@ uci add_list network.lan.ip6class='wan6'
 uci del qmodem_mwan.global.enable_mwan
 uci set qmodem_mwan.global.sticky_mode='0'
 uci add system led
-uci set system.@led[-1].name='wifi2g'
-uci set system.@led[-1].sysfs='LED-Air1'
+uci set system.@led[-1].name='net'
+uci set system.@led[-1].sysfs='LED-3'
 uci set system.@led[-1].trigger='netdev'
-uci set system.@led[-1].dev='phy0.0-ap0'
+uci set system.@led[-1].dev='br-lan'
 uci add_list system.@led[-1].mode='link'
+uci add_list system.@led[-1].mode='tx'
+uci add_list system.@led[-1].mode='rx'
 uci add system led
-uci set system.@led[-1].name='wifi5g'
-uci set system.@led[-1].sysfs='LED-Air2'
-uci set system.@led[-1].trigger='netdev'
-uci set system.@led[-1].dev='phy0.1-ap0'
-uci add_list system.@led[-1].mode='link'
+uci set system.@led[-1].name='heartbeat'
+uci set system.@led[-1].sysfs='LED-4'
+uci set system.@led[-1].trigger='heartbeat'
+uci set system.@led[-1].inverted='1'
 uci commit
 # /etc/init.d/network reload
 uci set wireless.radio0.cell_density='0'
