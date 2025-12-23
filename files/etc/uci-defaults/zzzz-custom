@@ -21,8 +21,57 @@ uci add_list network.lan.ip6class='wan6'
 # uci set qmodem.main.start_delay='15'
 # uci set qmodem.main.enable_pcie_scan='0'
 # uci set qmodem.main.enable_usb_scan='1'
-uci del qmodem_mwan.global.enable_mwan
+
+uci delete mwan3.@rule[-1]
+uci delete mwan3.@rule[-1]
+uci delete mwan3.@rule[-1]
+uci delete mwan3.@rule[-1]
+uci delete mwan3.@rule[-1]
+uci delete mwan3.@policy[-1]
+uci delete mwan3.@policy[-1]
+uci delete mwan3.@policy[-1]
+uci delete mwan3.@policy[-1]
+uci delete mwan3.@policy[-1]
+uci delete mwan3.@policy[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@member[-1]
+uci delete mwan3.@interface[-1]
+uci delete mwan3.@interface[-1]
+uci delete mwan3.@interface[-1]
+uci delete mwan3.@interface[-1]
+uci delete mwan3.@interface[-1]
+uci commit mwan3
+
+# uci del qmodem_mwan.global.enable_mwan
+
+uci add_list qmodem_mwan.@ipv4[-1].member_track_ip='119.29.29.29'
+
+uci set qmodem_mwan.global.enable_mwan='1'
 uci set qmodem_mwan.global.sticky_mode='0'
+uci add qmodem_mwan ipv4
+uci set qmodem_mwan.@ipv4[-1].member_priority='1'
+uci set qmodem_mwan.@ipv4[-1].member_weight='1'
+uci set qmodem_mwan.@ipv4[-1].member_interface='USB'
+uci add_list qmodem_mwan.@ipv4[-1].member_track_ip='test.ustc.edu.cn'
+uci add_list qmodem_mwan.@ipv4[-1].member_track_ip='cip.cc'
+uci add_list qmodem_mwan.@ipv4[-1].member_track_ip='208.67.222.222'
+uci add_list qmodem_mwan.@ipv4[-1].member_track_ip='208.67.220.220'
+uci add_list qmodem_mwan.@ipv4[-1].member_track_ip='119.29.29.29'
+uci set qmodem_mwan.@ipv4[-1].member_priority='50'
+
 uci add system led
 uci set system.@led[-1].name='net'
 uci set system.@led[-1].sysfs='LED-3'
@@ -52,5 +101,6 @@ uci commit wireless
 
 /etc/init.d/network reload
 wifi
+service qmodem_mwan restart
 
 fi
