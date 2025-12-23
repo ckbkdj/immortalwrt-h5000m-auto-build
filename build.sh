@@ -1,10 +1,6 @@
 #!/bin/bash
 cd immortalwrt
-echo "update feeds"
-./scripts/feeds update -a || { echo "update feeds failed"; exit 1; }
-echo "install feeds"
-./scripts/feeds install -a || { echo "install feeds failed"; exit 1; }
-./scripts/feeds install -a -f -p qmodem || { echo "install qmodem feeds failed"; exit 1; }
+
 cat ../h5000m.config > .config
 echo "make defconfig"
 make defconfig || { echo "defconfig failed"; exit 1; }
