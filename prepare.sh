@@ -19,7 +19,7 @@ fi
 
 echo "apply patch for h5000m support"
 curl -L https://github.com/immortalwrt/immortalwrt/pull/2166.diff -o support-for-h5000m.diff
-patch -p1 < support-for-h5000m.diff
+patch -p1 --no-backup < support-for-h5000m.diff
 
 echo "add feeds"
 cat feeds.conf.default > feeds.conf
