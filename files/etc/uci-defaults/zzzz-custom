@@ -1,9 +1,6 @@
 #!/bin/sh
 is_first_boot=`uci -q get zz_config.@status[0].first_boot`
 if test $is_first_boot -gt 0; then
-echo -e "zzhiveton\nzzhiveton" | (passwd root)
-uci set system.@system[0].hostname='zzH5000M'
-uci commit system
 # uci del dhcp.lan.ra_slaac
 # uci set network.lan.ipaddr='10.0.0.1'
 uci add_list network.lan.ip6class='USBv6'
@@ -85,19 +82,10 @@ uci set system.@led[-1].name='heartbeat'
 uci set system.@led[-1].sysfs='LED-4'
 uci set system.@led[-1].trigger='heartbeat'
 uci set system.@led[-1].inverted='1'
+
+uci set attendedsysupgrade.client.login_check_for_upgrades='0'
+
 uci commit
-# /etc/init.d/network reload
-uci set wireless.radio0.cell_density='0'
-uci set wireless.default_radio0.ssid='zzH5000M_24'
-uci set wireless.default_radio0.encryption='sae'
-uci set wireless.default_radio0.ocv='0'
-uci set wireless.default_radio0.key='zzhiveton'
-uci set wireless.radio1.cell_density='0'
-uci set wireless.default_radio1.ssid='zzH5000M'
-uci set wireless.default_radio1.encryption='sae'
-uci set wireless.default_radio1.ocv='0'
-uci set wireless.default_radio1.key='zzhiveton'
-uci commit wireless
 
 /etc/init.d/network reload
 wifi

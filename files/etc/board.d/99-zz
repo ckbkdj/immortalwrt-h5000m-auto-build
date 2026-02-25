@@ -1,0 +1,10 @@
+. /lib/functions/uci-defaults.sh
+
+board_config_update
+
+ucidef_set_hostname "zzH5000M"
+ucidef_set_root_password_plain "zzhiveton"
+ucidef_set_country "CN"
+ucidef_set_wireless "all" "zzH5000M" "sae-mixed" "zzhiveton"
+
+board_config_flush
